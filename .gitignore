@@ -5,7 +5,6 @@
 .history
 .idea/
 *.iml
-.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 
@@ -73,3 +72,5 @@ scripts/bundle_output*
 assets/docs.tar.xz
 lib/core/translations/arb/*
 docs_internal/*
+config.bat
+node_modules
